@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   
+    <title>Site teste</title>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    
+    <script type="text/babel">
+    class Noticia extends React.Component{
+        render(){
+            return(
+                <div>
+                 <h3>{this.props.titulo}</h3>
+                 <h3>{this.props.texto}</h3>
+                 <h3>{this.props.autor}</h3>
+                 <hr />
+                </div>
+            )
+        }
+    }
+    class App extends React.Component{
+        render(){
+            const noticias = [
+                {
+                    titulo: "Noticia 1",
+                    texto: "texto 1",
+                    autor: "autor 1"
+                },
+                {
+                    titulo: "Noticia 2",
+                    texto: "texto 2",
+                    autor: "autor 2"
+                },
+                {
+                    titulo: "Noticia 3",
+                    texto: "texto 3",
+                    autor: "autor 3"
+                }
+            ]
+            let final = noticias.map((element,index) => <Noticia key={index} titulo={element.titulo} texto={element.texto} autor={element.autor} />)
+            return(
+                <div>
+                   {final}
+                </div>
+            )
+        }
+    }
+    var root = document.getElementById("root")
+    ReactDOM.render(
+        <App />,
+        root
+    )
+    </script>
+</body>
+</html>

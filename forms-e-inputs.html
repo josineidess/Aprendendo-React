@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <style>
+       .red{
+           background-color: red;
+       }
+       .blue{
+           background-color: blue;
+       }
+       .green{
+           background-color: green;
+       }
+       .black{
+           background-color: black;
+       }
+   </style>
+    <title>Site teste</title>
+</head>
+<body>
+
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    
+    <script type="text/babel">
+    class App extends React.Component{
+      constructor(){
+          super()
+          this.state = {
+              nome: "Josi",
+              texto:"esse é o texto",
+              cor: "black"
+          }
+          this.alterarNome = this.alterarNome.bind(this)
+          this.alterarTexto = this.alterarTexto.bind(this)
+          this.alterarCor = this.alterarCor.bind(this)
+      }
+      alterarNome = (event) => this.setState({nome:event.target.value})
+      alterarTexto = (event) => this.setState({texto:event.target.value})
+      alterarCor = (event) => this.setState({cor:event.target.value})
+       render(){
+           return(
+               <div className={this.state.cor}>
+                 <input type="text" value={this.state.nome} onChange={this.alterarNome} />
+                 <p>{this.state.nome}</p>
+                 <textarea cols="10" rows="5" value={this.state.texto} onChange={this.alterarTexto}></textarea>
+                 <p>{this.state.texto}</p>
+                 <select value = {this.state.cor} id="s" onChange={this.alterarCor}> 
+                  <option value="green">
+                  verde
+                  </option>
+                  <option value="blue">
+                  azul
+                  </option>
+                  <option value="red">
+                  vermelho
+                  </option>
+                 </select>
+               </div>
+           )
+       }
+    }
+
+    ReactDOM.render(
+        <App />,
+        document.getElementById("root")
+    )
+    </script>
+</body>
+</html>

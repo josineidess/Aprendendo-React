@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <style>
+         .black{
+             color:black
+         }
+         .red{
+             color:red
+         }
+     </style>   
+    <title>Site teste</title>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    
+    <script type="text/babel">
+    class SearchBar extends React.Component{
+        constructor(){
+            super()
+            this.state = {
+                mostrar:true
+            }
+        }
+        alterarVis = e => this.setState({mostrar: e.target.value}) 
+       
+       render(){
+           return(
+              <div>
+              <input type="text" placeholder="Search..." />
+              <br />
+              <input onChange={this.alterarVis} type="checkbox" value={this.state.mostrar} />Only show products in stock
+             </div>
+           )
+       }
+    }
+
+    class ProductTable extends React.Component{
+        constructor(props){
+            super(props)
+            this.state = {
+                prods : [
+  {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
+  {category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
+  {category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball"},
+  {category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
+  {category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"},
+  {category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
+]
+        }
+        }
+        render(){
+           return(
+               <div>
+                 <ProductCategoryRow key={this.props.name} name="Sporting Goods" />
+                <ProductRow key={this.props.name} most={this.props.most} cat="Sporting Goods" prods={this.state.prods} />
+                <ProductCategoryRow key={this.props.name} name="Electronics" />
+                <ProductRow key={this.props.name} most={this.props.most} cat="Electronics" prods={this.state.prods} />
+                
+               </div>
+           )
+       }
+    }
+    class ProductCategoryRow extends React.Component{
+        render(){
+           return(
+               <div><b>{this.props.name}</b></div>
+           )
+       }
+    }
+    class ProductRow extends React.Component{
+        func(e){
+          if(e.stocked){
+              return "black"
+          }else{
+              return "red"
+          }
+        }
+        render(){
+          const cat1 = this.props.prods
+          let prd = []
+          cat1.map(e => {e.category == this.props.cat ? prd.push(e) : null}) 
+          const final = prd.map(e => <p className={this.func(e)}>{e.name} {e.price}</p>) 
+           return(
+               <div>{final}</div>           )
+       }
+    }
+    class FilterableProductTable extends React.Component{
+        constructor(){
+            super()
+            this.state = {
+                aparece:true
+            }
+        }
+        render(){
+           return(
+               <div>
+               <SearchBar />
+               <ProductTable />
+               </div>
+           )
+       }
+   }  
+    ReactDOM.render(
+        <FilterableProductTable />,
+        document.getElementById("root")
+    )
+    </script>
+</body>
+</html>

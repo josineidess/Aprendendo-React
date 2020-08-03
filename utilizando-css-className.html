@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   
+    <title>Site teste</title>
+
+    <style>
+       .red{
+           background-color: red;
+           color:white;
+           padding: 10px;
+       }
+       .green{
+           background-color: green;
+           color:white;
+           padding: 10px;
+       }
+    </style>
+
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    
+    <script type="text/babel">
+     
+    class CompA extends React.Component{
+        render(){
+            return(
+                <div>
+                   <p className={this.props.cor1}>eu sou {this.props.nome1}</p>
+                   <p className={this.props.cor2}>eu sou {this.props.nome2}</p> 
+                </div>
+            )
+        }
+    }
+
+    const root = document.getElementById("root");
+    ReactDOM.render(<CompA cor1="red" cor2="green" nome1="vermelho" nome2="verde" />,root)
+    
+    </script>
+
+</body>
+</html>

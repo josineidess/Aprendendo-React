@@ -1,0 +1,45 @@
+<html>
+    <head>
+   <title>pagina teste</title>
+   <meta charset="utf-8" lang="pt-br">
+    <style>
+        .red{
+            background-color: red;
+            color: white;
+            padding: 10px;
+        }
+        .green{
+            background-color: green;
+            color: white;
+            padding: 10px;
+        }
+    </style>
+    </head>
+    <body>
+    <div id="root"></div>
+    
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+      class App extends React.Component{
+          
+          metodo = (texto) => {
+              console.log(texto)
+          }
+          render() {
+              return(
+                  <div>
+                    <button onClick={() => this.metodo('Olá React')}>clique</button>
+                  </div>
+              )
+          }
+      } 
+      
+       const root = document.getElementById("root");
+       ReactDOM.render(<App />,root);
+    </script>
+
+    </body>
+</html>
